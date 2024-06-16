@@ -128,7 +128,8 @@ function App() {
         SetTimeLeft(60 * 25)
     }
   return (
-    <div className="App">
+    <div className="flex flex-col h-screen items-center justify-center bg-slate-300">
+      <div className='flex w-full justify-around '>
       <Break 
       breakLength={breakLength}
       decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
@@ -146,7 +147,8 @@ function App() {
       sessionLength={sessionLength}
       decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
       incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
-       />   
+       /> 
+       </div>  
        <button id="reset" onClick={handleRestButtonClick}>Reset</button>
        <audio id="beep" ref={audioElement}>
         <source src="https://onlineclock.net/audio/options/default.mp3" type='audio/mpeg' />
