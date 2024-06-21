@@ -18,6 +18,23 @@ function App() {
         SetTimeLeft(sessionLength);
     }, [sessionLength]);
 
+    //listen to timeleft changes
+    //if it is zero play audio
+    //change session to break or break to session
+    useEffect(()=>{
+        if(timeLeft === 0){
+            audioElement.current.play()
+            if(currentSessionType === 'Session'){
+                setCurrentSessionType('Break')
+                SetTimeLeft(breakLength)
+            }else if(currentSessionType === 'Break'){
+                setCurrentSessionType('Session')
+                SetTimeLeft(sessionLength)
+            }
+        }
+    }, [breakLength, currentSessionType, sessionLength, timeLeft])
+
+
     const decrementSessionLengthByOneMinute = () => {
       const newSessionLength = sessionLength - 60;
       if(newSessionLength > 0)
@@ -71,30 +88,8 @@ function App() {
             //decrement time left by one second
             //use set interval function
             const setNewIntervalId = setInterval(()=>{
-                SetTimeLeft(prevTimeLeft => {
-                    const newTimeLeft = prevTimeLeft -1;
-                    if(newTimeLeft >= 0){
-                        return newTimeLeft;
-                    }
-                    //time left is less than 0aud
-                    audioElement.current.play()
-                   // if session 
-                    // switch to break and set time left to breaksessionLength
-                   if(currentSessionType === 'Session'){
-                        setCurrentSessionType('Break');
-
-                        return breakLength;
-                    }
-
-                        //if break
-                    //switch to session and set time left to sessionLength
-                    else if(currentSessionType === 'Break'){
-                        setCurrentSessionType('Session');
-
-                        return sessionLength;
-                    }
-                });
-            }, 1000);
+                SetTimeLeft(prevTimeLeft => prevTimeLeft -1);
+            }, 100);
             setItervalId(setNewIntervalId);
         }   
         
@@ -128,7 +123,7 @@ function App() {
         SetTimeLeft(60 * 25)
     }
   return (
-    <div className="flex flex-col h-screen items-center justify-center bg-slate-300">
+    <div className="flex flex-col h-screen items-center justify-center bg-green-600">
       <div className='flex w-full justify-around '>
       <Break 
       breakLength={breakLength}
@@ -136,6 +131,7 @@ function App() {
       incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute}
       />
       <TimeLeft
+      handleRestButtonClick={handleRestButtonClick}
       breakLength={breakLength}
       handleStartStopClick={handleStartStopClick}
        timerLabel={currentSessionType}
@@ -149,7 +145,6 @@ function App() {
       incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
        /> 
        </div>  
-       <button id="reset" onClick={handleRestButtonClick}>Reset</button>
        <audio id="beep" ref={audioElement}>
         <source src="https://onlineclock.net/audio/options/default.mp3" type='audio/mpeg' />
        </audio>
