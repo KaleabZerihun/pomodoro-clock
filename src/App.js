@@ -123,13 +123,9 @@ function App() {
         SetTimeLeft(60 * 25)
     }
   return (
-    <div className="flex flex-col h-screen items-center justify-center bg-green-600">
-      <div className='flex justify-around w-auto '>
-      <Break 
-      breakLength={breakLength}
-      decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
-      incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute}
-      />
+    <div className="flex flex-col h-screen items-center justify-center bg-indigo-950">
+      <div className='block justify-around w-auto'>
+
       <TimeLeft
       handleRestButtonClick={handleRestButtonClick}
       breakLength={breakLength}
@@ -139,11 +135,20 @@ function App() {
        StartStopButtonLabel={isstarted ? 'Stop' : 'Start'}
        timeLeft={timeLeft}
        />
-      <Session
+       <div className='grid grid-flow-col gap-2'>
+       <Session
       sessionLength={sessionLength}
       decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
       incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
        /> 
+    <Break 
+      breakLength={breakLength}
+      decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
+      incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute}
+      />
+
+       </div>
+      
        </div>  
        <audio id="beep" ref={audioElement}>
         <source src="https://onlineclock.net/audio/options/default.mp3" type='audio/mpeg' />
