@@ -4,6 +4,7 @@ import Break from './Components/Break';
 import Session from './Components/Session';
 import TimeLeft from './Components/TimeLeft';
 import { useRef } from 'react';
+var MediaQuery = require('react-responsive');
 
 function App() {
     const audioElement = useRef(null)
