@@ -4,7 +4,6 @@ import Break from './Components/Break';
 import Session from './Components/Session';
 import TimeLeft from './Components/TimeLeft';
 import { useRef } from 'react';
-var MediaQuery = require('react-responsive');
 
 function App() {
     const audioElement = useRef(null)
@@ -125,7 +124,7 @@ function App() {
     }
   return (
     <div className="flex flex-col h-screen items-center justify-center bg-green-600">
-      <div className='flex w-full justify-around '>
+      <div className='flex justify-around w-auto '>
       <Break 
       breakLength={breakLength}
       decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}

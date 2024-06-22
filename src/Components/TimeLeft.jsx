@@ -8,7 +8,7 @@ const TimeLeft = ({
 
     const timeLeftInFormat = moment.duration(timeLeft, 's').format('mm:ss', {trim: false});
   return (
-    <div className='flex flex-col justify-evenly w-64 h-72 rounded-full  items-center imageTom'>
+    <div className='flex flex-col justify-evenly w-64 h-72 rounded-full items-center imageTom'>
     <p className='text-2xl text-red-950' id="timer-label">{timerLabel}</p>
     <p className='orbitron text-4xl font-bold text-black' id="time-left">{timeLeftInFormat}</p>
     <div className='grid grid-flow-col gap-2'>
