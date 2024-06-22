@@ -89,7 +89,7 @@ function App() {
             //use set interval function
             const setNewIntervalId = setInterval(()=>{
                 SetTimeLeft(prevTimeLeft => prevTimeLeft -1);
-            }, 100);
+            }, 1000);
             setItervalId(setNewIntervalId);
         }   
         
